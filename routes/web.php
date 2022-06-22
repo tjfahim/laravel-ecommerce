@@ -73,11 +73,6 @@ Route::middleware(['auth:sanctum','verified'])->group(function(){
 //forAdmin
 Route::middleware(['auth:sanctum','verified','authadmin'])->group(function(){
     Route::get('/admin/dashboard',AdminDashboardComponent::class)->name('admin.dashboard');
-    Route::get('/product/{slug}', DetailComponent::class)->name('product.detail');
-    Route::get('/product-category/{category_slug}',CategoryComponent::class )->name('category.product');
-    Route::get('/search',SearchComponent::class)->name('search.product');
-    Route::get('/wishlist',WishListComponent::class)->name('product.wishlist');
-    Route::get('/thank-you',ThankYouComponent::class)->name('thankyou');
     Route::get('/admin/category',AdminCategoriesComponent::class)->name('admin.categories');
     Route::get('/admin/category/add',AddAdminCategoryComponent::class)->name('admin.addCategory');
     Route::get('/admin/category/edit/{category_slug}',AdminEditCategory::class)->name('category.edit');
@@ -97,3 +92,9 @@ Route::middleware(['auth:sanctum','verified','authadmin'])->group(function(){
 
 });
 
+
+Route::get('/product/{slug}', DetailComponent::class)->name('product.detail');
+Route::get('/product-category/{category_slug}',CategoryComponent::class )->name('category.product');
+Route::get('/search',SearchComponent::class)->name('search.product');
+Route::get('/wishlist',WishListComponent::class)->name('product.wishlist');
+Route::get('/thank-you',ThankYouComponent::class)->name('thankyou');
