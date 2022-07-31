@@ -112,8 +112,35 @@
 									</div>
 									<div class="product-info">
 										<a href="{{route('product.detail',['slug'=>$product->slug])}}" class="product-name"><span>{{$product->name}}</span></a>
-										<div class="wrap-price"><span class="product-price">${{$product->regular_price}}</span></div>
-										<div class="wrap-price"><span class="product-price">${{$product->sele_price}}</span></div>
+                                        {{-- @if ($product->sele_price > 0 && $sale->status==1 && $sale->sale_date>Carbon\Carbon::now())
+                                        <div class="wrap-price"><span class="product-price">${{$product->sele_price}}</span>
+                                       <del><span class="product-price regprice">${{$product->regular_price}}</span></del>
+                                       </div>
+                                   @else
+                                        <div class="wrap-price"><span class="product-price">${{$product->regular_price}}</span></div>
+                                   @endif --}}
+                                        @if ($product->sele_price)
+                                            <div class="wrap-price">
+                                                <span class="product-price"><del>${{$product->regular_price}}</del></span>
+                                            </div>
+
+                                            <div class="wrap-price">
+                                                <span class="product-price">${{$product->sele_price}}</span>
+                                            </div>
+                                        @else
+                                            <div class="wrap-price">
+                                                <span class="product-price">${{$product->regular_price}}</span>
+                                            </div>
+                                        @endif
+                                        {{-- <div class="wrap-price">
+                                            <span class="product-price">${{$product->regular_price}}</span>
+                                        </div>
+
+                                        <div class="wrap-price">
+                                            <span class="product-price">${{$product->sele_price}}</span>
+                                        </div> --}}
+
+
 										<a href="#" class="btn add-to-cart" wire:click.prevent="store({{$product->id}},'{{$product->name}}',{{$product->regular_price}})">Add To Cart</a>
                                         <div class="product-wish">
                                             @if ($witems->contains($product->id))

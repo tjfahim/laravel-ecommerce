@@ -5,6 +5,7 @@ use App\Http\Livewire\Admin\AdminAddCouponsComponent;
 use App\Http\Livewire\Admin\AdminAddHomeSliderComponent;
 use App\Http\Livewire\Admin\AdminAddProductComponent;
 use App\Http\Livewire\Admin\AdminCategoriesComponent;
+use App\Http\Livewire\Admin\AdminContactComponent;
 use App\Http\Livewire\Admin\AdminCouponsComponent;
 use App\Http\Livewire\Admin\AdminDashboardComponent;
 use App\Http\Livewire\Admin\AdminEditCategory;
@@ -18,19 +19,23 @@ use App\Http\Livewire\Admin\AdminOrderComponent;
 use App\Http\Livewire\Admin\AdminOrderDetailsComponent;
 use App\Http\Livewire\Admin\AdminProductComponent;
 use App\Http\Livewire\Admin\AdminSaleComponent;
+use App\Http\Livewire\Admin\AdminSettingComponent;
 use App\Http\Livewire\CartComponent;
 use App\Http\Livewire\CategoryComponent;
 use App\Http\Livewire\CheckoutComponent;
+use App\Http\Livewire\ContactComponent;
 use App\Http\Livewire\DetailComponent;
 use App\Http\Livewire\HomeComponents;
 use App\Http\Livewire\SearchComponent;
 use App\Http\Livewire\ShopComponent;
 use App\Http\Livewire\ThankYouComponent;
+use App\Http\Livewire\User\UserChangePasswordComponent;
 use App\Http\Livewire\User\UserDashboardComponent;
 use App\Http\Livewire\User\UserOrderComponent;
 use App\Http\Livewire\User\UserOrderDetailsComponent;
 use App\Http\Livewire\User\UserReviewComponent;
 use App\Http\Livewire\WishListComponent;
+use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Route;
 
 
@@ -51,6 +56,8 @@ Route::get('/shop',ShopComponent::class);
 Route::get('/checkout',CheckoutComponent::class);
 Route::get('/cart',CartComponent::class)->name('product.cart');
 
+
+
 // Route::middleware([
 //     'auth:sanctum',
 //     config('jetstream.auth_session'),
@@ -67,6 +74,8 @@ Route::middleware(['auth:sanctum','verified'])->group(function(){
     Route::get('/user/orders',UserOrderComponent::class)->name('user.order');
     Route::get('/user/orders/{order_id}',UserOrderDetailsComponent::class)->name('user.orderDetails');
     Route::get('/user/review/{order_item_id}',UserReviewComponent::class)->name('user.review');
+    Route::get('/user/change-password',UserChangePasswordComponent::class)->name('user.changepassword');
+
 
 });
 
@@ -89,6 +98,8 @@ Route::middleware(['auth:sanctum','verified','authadmin'])->group(function(){
     Route::get('/admin/coupon/edit/{coupon_id}',AdminEditCouponsComponent::class)->name('admin.editCoupon');
     Route::get('/admin/orders',AdminOrderComponent::class)->name('admin.order');
     Route::get('/admin/orders/{order_id}',AdminOrderDetailsComponent::class)->name('admin.orderDetails');
+    Route::get('/admin/contact-us',AdminContactComponent::class)->name('admin.contact');
+    Route::get('/admin/settings',AdminSettingComponent::class)->name('admin.setting');
 
 });
 
@@ -98,3 +109,4 @@ Route::get('/product-category/{category_slug}',CategoryComponent::class )->name(
 Route::get('/search',SearchComponent::class)->name('search.product');
 Route::get('/wishlist',WishListComponent::class)->name('product.wishlist');
 Route::get('/thank-you',ThankYouComponent::class)->name('thankyou');
+Route::get('/contact-us',ContactComponent::class)->name('contact');

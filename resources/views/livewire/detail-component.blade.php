@@ -22,12 +22,22 @@
             <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12 main-content-area">
                 <div class="wrap-product-detail">
                     <div class="detail-media">
-                        <div class="product-gallery">
+                        <div class="product-gallery" wire:ignore>
                           <ul class="slides">
 
                             <li data-thumb="{{asset('assets/images/products')}}/{{$product->image}}">
                                 <img src="{{asset('assets/images/products')}}/{{$product->image}}" alt="{{$product->name}}" />
                             </li>
+                            @php
+                                $images=explode(',',$product->images)
+                            @endphp
+                            @foreach ($images as $image)
+                            <div>
+                                <li data-thumb="{{asset('assets/images/products')}}/{{$image}}">
+                                    <img src="{{asset('assets/images/products')}}/{{$image}}" alt="{{$product->name}}" />
+                                </li>
+                            </div>
+                            @endforeach
 
 
                           </ul>
@@ -43,7 +53,7 @@
                             @php
                                 $avgrating=0;
                             @endphp
-                            {{-- @foreach ($product->orderItem->where('rstatus',1) as $orderItem )
+                            {{-- @foreach ($product->orderItems->where('rstatus',1) as $orderItem )
                                 @php
                                     $avgrating=$avgrating+$orderItem->review->rating;
                                 @endphp
@@ -201,7 +211,9 @@
                         </div>
                     </div>
                 </div>
-            </div><!--end main products area-->
+            </div>
+
+            <!--end main products area-->
 
             <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 sitebar">
                 <div class="widget widget-our-services ">

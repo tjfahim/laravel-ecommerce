@@ -48,11 +48,12 @@
                                             <div class="dropdown">
                                                 <button class="btn btn-success btn-sm dropdown-toggle" type="button" data-toggle='dropdown' id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Status<span class="caret"></span></button>
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
-                                                    <a href="#" wire:click.prevent="updateOrderStatus({{$order->id}},'delivered')" class="dropdown-item">Delivered</a>
-                                                    <a href="#" wire:click.prevent="updateOrderStatus({{$order->id}},'cenceled')" class="dropdown-item">Canceled</a>
+                                                    <a href="#" wire:click.prevent="updateOrderStatus({{$order->id}},'delivered')" class="btn btn-light btn-sm">Delivered</a>
+                                                    <a href="#" wire:click.prevent="updateOrderStatus({{$order->id}},'Canceled')" class="btn btn-light btn-sm">Canceled</a>
                                                 </div>
 
                                             </div>
+
                                         </td>
                                     </tr>
                                 @endforeach
