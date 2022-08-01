@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Livewire;
-
+use Illuminate\Support\Facades\DB;
 use App\Models\Category;
 use App\Models\HomeCategory;
 use App\Models\HomeSlider;
@@ -13,7 +13,7 @@ class HomeComponents extends Component
 {
     public function render()
     {
-        $slider=HomeSlider::where('status',1)->get();
+        $slider=DB::table('HomeSlider')->where('status','=',1)->get();
         $Lproduct=Product::orderBy('created_at','DESC')->get()->take(8);
         $category=HomeCategory::find(1);
         $cats=explode(',',$category->sel_categories);
