@@ -13,7 +13,7 @@ class HomeComponents extends Component
 {
     public function render()
     {
-        $slider=DB::table('HomeSlider')->where('status','=',1)->get();
+        $slider=HomeSlider::where('status',1)->get();
         $Lproduct=Product::orderBy('created_at','DESC')->get()->take(8);
         $category=HomeCategory::find(1);
         $cats=explode(',',$category->sel_categories);
