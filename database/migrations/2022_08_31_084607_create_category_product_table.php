@@ -13,13 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('r_reviews', function (Blueprint $table) {
+        Schema::create('category_product', function (Blueprint $table) {
             $table->id();
-            $table->integer('rating');
-            $table->text('comment');
-            $table->bigInteger('order_item_id')->unsigned();
             $table->timestamps();
-            $table->foreign('order_item_id')->references('id')->on('ordar_items')->onDelete('cascade');
         });
     }
 
@@ -30,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('r_reviews');
+        Schema::dropIfExists('category_product');
     }
-};  
+};
